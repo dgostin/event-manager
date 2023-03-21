@@ -1,0 +1,7 @@
+[
+    { "value": "Music", "label": "Music" },
+    { "value": "Sports", "label": "Sports" },
+    { "value": "Food", "label": "Food" },
+    { "value": "Arts", "label": "Arts" },
+    { "value": "Technology", "label": "Technology" }
+]

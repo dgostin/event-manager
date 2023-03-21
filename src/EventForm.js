@@ -4,19 +4,21 @@ import {
   TextField,
   FormControl,
   InputLabel,
-  Select,
-  MenuItem,
   Checkbox,
   ListItemText,
   Button,
   Box,
 } from '@material-ui/core';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 import Chip from '@material-ui/core/Chip';
 import DateTimePicker from 'react-datetime-picker';
+import categories from './categories.json';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
+    padding: theme.spacing(3),
     minWidth: 120,
     maxWidth: 300,
   },
@@ -49,16 +51,16 @@ const useStyles = makeStyles((theme) => ({
   button: {
     margin: 'auto',
     textAlign: 'center'
-  }
+  },
 }));
 
-const categories = [
-  { value: 'Music', label: 'Music' },
-  { value: 'Sports', label: 'Sports' },
-  { value: 'Food', label: 'Food' },
-  { value: 'Arts', label: 'Arts' },
-  { value: 'Technology', label: 'Technology' },
-];
+// const categories = [
+//   { value: 'Music', label: 'Music' },
+//   { value: 'Sports', label: 'Sports' },
+//   { value: 'Food', label: 'Food' },
+//   { value: 'Arts', label: 'Arts' },
+//   { value: 'Technology', label: 'Technology' },
+// ];
 
 const participants = [
   'John Doe',
@@ -71,12 +73,11 @@ const participants = [
 function EventForm({ onSubmit, initialValues }) {
 
   const classes = useStyles();
-  const [values, setValues] = useState({});
+  const [values, setValues] = useState({category: 'Music'});
   const [dateValue, setDateValue] = useState(new Date());
 
 //   console.log(initialValues.name);
     useEffect(() => {
-        console.log(initialValues);
         if (initialValues !== undefined) {
             setValues({
                 name: initialValues.name, 
@@ -104,7 +105,7 @@ function EventForm({ onSubmit, initialValues }) {
         onSubmit({...values, date: dateStamp}, setValues);
     };
 
-  return (
+    return (
     <div className={classes.formContainer}>
     <form onSubmit={handleSubmit}>
         <Box className={classes.box}>
@@ -133,7 +134,7 @@ function EventForm({ onSubmit, initialValues }) {
             <InputLabel>Category</InputLabel>
             <Select
                 name="category"
-                value={values.category || ''}
+                value={values.category || 'Music'}
                 onChange={handleChange}
                 required
             >
@@ -148,7 +149,7 @@ function EventForm({ onSubmit, initialValues }) {
 
         <Box className={classes.box}>
         <FormControl className={classes.formControl}>
-            <InputLabel>Participants</InputLabel>
+            <InputLabel shrink={true}>Participants</InputLabel>
             <Select
                 multiple
                 name="participants"

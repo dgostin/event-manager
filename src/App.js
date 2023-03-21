@@ -4,7 +4,7 @@ import Event from './Event';
 // import {Container} from './components/styles/Container.styled'
 import EventList from './EventList';
 import Navbar from './Navbar';
- 
+
 function App() {
 
   return (

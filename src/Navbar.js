@@ -23,8 +23,6 @@ function Navbar() {
             Event Manager
           </Typography>
           <Button color="inherit" href="/events">Events</Button>
-          <Button color="inherit">About</Button>
-          <Button color="inherit">Contact</Button>
         </Toolbar>
       </AppBar>
     </div>

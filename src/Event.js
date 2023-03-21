@@ -22,6 +22,7 @@ function Event() {
   const navigate = useNavigate();
   const [event, setEvent] = useState({});
   const [loading, setLoading] = useState(true);
+  const [dateString, setDateString] = useState('');
 
   const { id } = useParams();
 
@@ -32,6 +33,10 @@ function Event() {
           await axios.get('https://6413adddc469cff60d684ba6.mockapi.io/events/'+id);
         // console.log('Event created:', response.data);
         // handle success, e.g. show success message, redirect to event list page
+
+        var newDate = new Date();
+        newDate.setTime(response.data.date*1000);
+        setDateString(newDate.toLocaleString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'}));
 
         setEvent(response.data);
         setLoading(false);
@@ -47,9 +52,8 @@ function Event() {
   const handleEditEvent = async (eventData, setValues) => {
 
     try {
-        console.log('https://6413adddc469cff60d684ba6.mockapi.io/events/'+eventData.id);
         const response = 
-        await axios.put('https://6413adddc469cff60d684ba6.mockapi.io/events/'+eventData.id, eventData);
+        await axios.put('https://6413adddc469cff60d684ba6.mockapi.io/events/'+id, eventData);
         console.log('Event created:', response.data);
 
         // handle success, e.g. show success message, redirect to event list page
@@ -68,7 +72,7 @@ function Event() {
     
         <div className={classes.root}>
         <Typography variant="h4">{event.name}</Typography>
-        <Typography variant="subtitle1">Date: {event.date}</Typography>
+        <Typography variant="subtitle1">Date: {dateString}</Typography>
         <Typography variant="subtitle1">Participants: {event.participants.join(', ')}</Typography>
         <Typography variant="subtitle1">Category: {event.category}</Typography>
 
