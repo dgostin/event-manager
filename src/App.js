@@ -14,7 +14,6 @@ function App() {
         <Routes>
         
           <Route path="/" element={ <Navigate to="/events" /> } />
-
           <Route path="/events" element={<EventList />} />
           <Route path="/event/:id" element={<Event />} />
           
